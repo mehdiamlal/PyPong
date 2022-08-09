@@ -3,9 +3,6 @@ from paddle import Paddle
 from ball import Ball
 from time import sleep
 
-PADDLE1_INITIAL_POSITIONS = ((-380, 10), (-380, 30), (-380, -10), (-380, -30))
-PADDLE2_INITIAL_POSITIONS = ((370, 10), (370, 30), (370, -10), (370, -30))
-
 
 screen = Screen()
 screen.setup(height=600, width=800)
@@ -29,8 +26,8 @@ while separator.ycor() < 300:
     separator.penup()
     separator.forward(20)
 
-paddle1 = Paddle(PADDLE1_INITIAL_POSITIONS)
-paddle2 = Paddle(PADDLE2_INITIAL_POSITIONS)
+paddle1 = Paddle((-350, 0))
+paddle2 = Paddle((350, 0))
 ball = Ball()
 
 screen.update()

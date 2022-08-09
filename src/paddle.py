@@ -1,27 +1,22 @@
-from re import I
 from turtle import Turtle
 
-class Paddle():
+class Paddle(Turtle):
 
-    def __init__(self, initial_positions):
-        self.segments = [Turtle(), Turtle(), Turtle(), Turtle()]
-
-        for i in range(len(self.segments)):
-            self.segments[i].penup()
-            self.segments[i].shape("square")
-            self.segments[i].color("#fff")
-            self.segments[i].goto(initial_positions[i])
+    def __init__(self, initial_position):
+        
+        super().__init__()
+        self.color("#fff")
+        self.penup()
+        self.shape("square")
+        self.shapesize(stretch_len=1, stretch_wid=5)
+        self.goto(initial_position)
         
 
     def up(self):
         """Makes the paddle go up."""
-        for s in self.segments:
-            s.setheading(90)
-            s.forward(40)
+        self.sety(self.ycor() + 40)
 
 
     def down(self):
         """Makes the paddle go down."""
-        for s in reversed(self.segments):
-            s.setheading(270)
-            s.forward(40)
+        self.sety(self.ycor() - 40)
