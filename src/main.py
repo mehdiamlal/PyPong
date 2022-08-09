@@ -44,6 +44,14 @@ while game_is_on:
         ball.wall_bounce()
     
 
+    #collision with paddle2
+    if ball.xcor() > 340 and ball.distance(paddle2) < 50:
+        ball.paddle_bounce()
+
+    #collision with paddle1
+    if ball.xcor() < -340 and ball.distance(paddle1) < 50:
+        ball.paddle_bounce()
+
     screen.update()
     sleep(0.03)
 

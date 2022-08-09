@@ -10,6 +10,7 @@ class Paddle(Turtle):
         self.shape("square")
         self.shapesize(stretch_len=1, stretch_wid=5)
         self.goto(initial_position)
+        self.speed(0)
         
 
     def up(self):

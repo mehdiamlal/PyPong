@@ -19,6 +19,9 @@ class Ball(Turtle):
         self.goto(new_x, new_y)
 
     def wall_bounce(self):
-        """Makes the ball bounce once it hits the wall."""
+        """Makes the ball bounce once it hits the wall by reversing its direction on y-axis."""
         self.y_move *= -1 
- 
+
+    def paddle_bounce(self):
+        """Makes the ball bounce once it hits the wall by reversing its direction on x-axis."""
+        self.x_move *= -1
