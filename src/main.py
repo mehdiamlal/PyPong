@@ -3,6 +3,8 @@ from paddle import Paddle
 from ball import Ball
 from time import sleep
 from scoreboard import ScoreBoard
+from playsound import playsound
+
 
 
 screen = Screen()
@@ -27,7 +29,7 @@ while separator.ycor() < 300:
     separator.penup()
     separator.forward(20)
 
-right_paddle = Paddle((-350, 0))
+right_paddle = Paddle((-360, 0))
 left_paddle = Paddle((350, 0))
 scoreboard = ScoreBoard()
 ball = Ball()
@@ -43,15 +45,18 @@ game_is_on = True
 while game_is_on:
     ball.move()
     if ball.ycor() > 280 or ball.ycor() < -280:
+        playsound(sound="../sound/bounce_sound.mp3", block=False)
         ball.wall_bounce()
     
 
     #collision with left_paddle
     if ball.xcor() > 340 and ball.distance(left_paddle) < 50:
+        playsound(sound="../sound/bounce_sound.mp3", block=False)
         ball.paddle_bounce()
 
     #collision with right_paddle
     if ball.xcor() < -340 and ball.distance(right_paddle) < 50:
+        playsound(sound="../sound/bounce_sound.mp3", block=False)
         ball.paddle_bounce()
 
     #when left_paddle misses
@@ -70,7 +75,7 @@ while game_is_on:
 
 
     screen.update()
-    sleep(0.05)
+    sleep(0.04)
 
 
 screen.exitonclick()
