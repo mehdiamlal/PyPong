@@ -9,9 +9,16 @@ class Ball(Turtle):
         self.speed(3)
         self.shape("circle")
         self.color("#fff")
+        self.x_move = 10
+        self.y_move = 10
     
     def move(self):
         """Makes the ball move."""
-        new_x = self.xcor() + 10
-        new_y = self.ycor() + 10 
+        new_x = self.xcor() + self.x_move
+        new_y = self.ycor() + self.y_move 
         self.goto(new_x, new_y)
+
+    def wall_bounce(self):
+        """Makes the ball bounce once it hits the wall."""
+        self.y_move *= -1 
+ 
