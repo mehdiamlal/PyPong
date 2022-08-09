@@ -2,6 +2,7 @@ from turtle import Turtle, Screen
 from paddle import Paddle
 from ball import Ball
 from time import sleep
+from scoreboard import ScoreBoard
 
 
 screen = Screen()
@@ -26,15 +27,16 @@ while separator.ycor() < 300:
     separator.penup()
     separator.forward(20)
 
-paddle1 = Paddle((-350, 0))
-paddle2 = Paddle((350, 0))
+right_paddle = Paddle((-350, 0))
+left_paddle = Paddle((350, 0))
+scoreboard = ScoreBoard()
 ball = Ball()
 
 screen.update()
-screen.onkey(paddle1.up, "w")
-screen.onkey(paddle1.down, "s")
-screen.onkey(paddle2.up, "Up")
-screen.onkey(paddle2.down, "Down")
+screen.onkey(right_paddle.up, "w")
+screen.onkey(right_paddle.down, "s")
+screen.onkey(left_paddle.up, "Up")
+screen.onkey(left_paddle.down, "Down")
 
 game_is_on = True
 
@@ -44,16 +46,31 @@ while game_is_on:
         ball.wall_bounce()
     
 
-    #collision with paddle2
-    if ball.xcor() > 340 and ball.distance(paddle2) < 50:
+    #collision with left_paddle
+    if ball.xcor() > 340 and ball.distance(left_paddle) < 50:
         ball.paddle_bounce()
 
-    #collision with paddle1
-    if ball.xcor() < -340 and ball.distance(paddle1) < 50:
+    #collision with right_paddle
+    if ball.xcor() < -340 and ball.distance(right_paddle) < 50:
         ball.paddle_bounce()
+
+    #when left_paddle misses
+    if ball.xcor() < -400:
+        right_paddle.goto(-350, 0)
+        left_paddle.goto(350, 0)
+        scoreboard.increase_right_score()
+        ball = Ball()
+
+    #when right_paddle misses
+    if ball.xcor() > 400:
+        right_paddle.goto(-350, 0)
+        left_paddle.goto(350, 0)
+        scoreboard.increase_left_score()
+        ball = Ball()
+
 
     screen.update()
-    sleep(0.03)
+    sleep(0.05)
 
 
 screen.exitonclick()
