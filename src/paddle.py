@@ -4,9 +4,9 @@ from turtle import Turtle
 class Paddle():
 
     def __init__(self, initial_positions):
-        self.segments = [Turtle(), Turtle(), Turtle()]
+        self.segments = [Turtle(), Turtle(), Turtle(), Turtle()]
 
-        for i in range(3):
+        for i in range(len(self.segments)):
             self.segments[i].penup()
             self.segments[i].shape("square")
             self.segments[i].color("#fff")

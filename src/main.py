@@ -1,9 +1,10 @@
 from turtle import Turtle, Screen
 from paddle import Paddle
-import time
+from ball import Ball
+from time import sleep
 
-PADDLE1_INITIAL_POSITIONS = ((-380, 0), (-380, 20), (-380, -20))
-PADDLE2_INITIAL_POSITIONS = ((370, 0), (370, 20), (370, -20))
+PADDLE1_INITIAL_POSITIONS = ((-380, 10), (-380, 30), (-380, -10), (-380, -30))
+PADDLE2_INITIAL_POSITIONS = ((370, 10), (370, 30), (370, -10), (370, -30))
 
 
 screen = Screen()
@@ -30,17 +31,20 @@ while separator.ycor() < 300:
 
 paddle1 = Paddle(PADDLE1_INITIAL_POSITIONS)
 paddle2 = Paddle(PADDLE2_INITIAL_POSITIONS)
+ball = Ball()
 
 screen.update()
+screen.onkey(paddle1.up, "w")
+screen.onkey(paddle1.down, "s")
+screen.onkey(paddle2.up, "Up")
+screen.onkey(paddle2.down, "Down")
 
 game_is_on = True
 
 while game_is_on:
-    screen.onkey(paddle1.up, "w")
-    screen.onkey(paddle1.down, "s")
-    screen.onkey(paddle2.up, "Up")
-    screen.onkey(paddle2.down, "Down")
+    ball.move()
     screen.update()
+    sleep(0.03)
 
 
 screen.exitonclick()
